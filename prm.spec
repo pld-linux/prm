@@ -9,6 +9,7 @@ Group:		Development/Languages
 Source0:	http://rubygems.org/downloads/%{name}-%{version}.gem
 # Source0-md5:	7d01b989cb87510addc64686d5deb5f9
 Patch0:		optional-s3.patch
+Patch1:		templates.patch
 URL:		https://github.com/dnbert/prm
 BuildRequires:	rpm-rubyprov
 BuildRequires:	rpmbuild(macros) >= 1.656
@@ -30,6 +31,7 @@ object storage systems.
 %setup -q
 %{__sed} -i -e '1 s,#!.*ruby,#!%{__ruby},' bin/*
 %patch0 -p1
+%patch1 -p1
 
 %build
 # write .gemspec
@@ -42,6 +44,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{ruby_vendorlibdir},%{ruby_specdir},%{_bindir}}
 cp -a lib/* $RPM_BUILD_ROOT%{ruby_vendorlibdir}
 cp -a bin/* $RPM_BUILD_ROOT%{_bindir}
+cp -a templates $RPM_BUILD_ROOT%{ruby_vendorlibdir}/%{name}
 cp -p %{name}-%{version}.gemspec $RPM_BUILD_ROOT%{ruby_specdir}
 
 %clean

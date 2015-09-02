@@ -1,0 +1,22 @@
+--- prm-0.2.13/lib/prm/repo.rb~	2015-09-02 13:05:28.000000000 +0300
++++ prm-0.2.13/lib/prm/repo.rb	2015-09-02 13:06:32.782306675 +0300
+@@ -179,7 +179,7 @@
+         end
+ 
+ 
+-        template_dir = File.join(File.dirname(__FILE__), "..", "..", "templates")
++        template_dir = File.join(File.dirname(__FILE__), "templates")
+         erb = ERB.new(File.read("#{template_dir}/deb_release.erb"), nil, "-").result(binding)
+ 
+         release_file = File.new("#{path}/dists/#{release}/Release.tmp","wb")
+--- prm-0.2.13/lib/prm/rpm.rb~	2015-09-02 13:05:28.000000000 +0300
++++ prm-0.2.13/lib/prm/rpm.rb	2015-09-02 13:06:42.996143235 +0300
+@@ -55,7 +55,7 @@
+                     filelists
+                 }
+ 
+-                template_dir = File.join(File.dirname(__FILE__), "..", "..", "templates")
++                template_dir = File.join(File.dirname(__FILE__), "templates")
+ 
+                 erb_files.each { |f|
+                     erb = ERB.new(File.read("#{template_dir}/#{f}.xml.erb"), nil, "-").result(binding)
