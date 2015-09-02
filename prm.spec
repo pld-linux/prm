@@ -33,6 +33,9 @@ object storage systems.
 %patch0 -p1
 %patch1 -p1
 
+# remove +x to avoid generating bogus deps
+find lib -type f | xargs chmod a-x
+
 %build
 # write .gemspec
 %__gem_helper spec
