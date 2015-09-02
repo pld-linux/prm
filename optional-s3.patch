@@ -1,0 +1,19 @@
+--- prm-0.2.13/lib/prm/repo.rb~	2015-09-02 12:52:57.000000000 +0300
++++ prm-0.2.13/lib/prm/repo.rb	2015-09-02 13:00:21.784027931 +0300
+@@ -7,7 +7,6 @@
+ require 'find'
+ require 'thread'
+ require 'peach' 
+-require 'aws/s3'
+ require 'arr-pm'
+ require File.join(File.dirname(__FILE__), 'rpm.rb')
+ 
+@@ -289,6 +288,8 @@
+ 
+ module DHO
+     def sync_to_dho(path, accesskey, secretkey,pcomponent,prelease,object_store)
++        require 'aws/s3'
++
+         component = pcomponent.join
+         release = prelease.join
+         puts object_store.inspect

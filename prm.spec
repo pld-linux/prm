@@ -6,14 +6,15 @@ License:	MIT
 Group:		Development/Languages
 Source0:	http://rubygems.org/downloads/%{name}-%{version}.gem
 # Source0-md5:	7d01b989cb87510addc64686d5deb5f9
+Patch0:		optional-s3.patch
 URL:		https://github.com/dnbert/prm
 BuildRequires:	rpm-rubyprov
 BuildRequires:	rpmbuild(macros) >= 1.656
 BuildRequires:	sed >= 4.0
 Requires:	ruby-arr-pm
-Requires:	ruby-aws-s3
 Requires:	ruby-clamp
 Requires:	ruby-peach
+Suggests:	ruby-aws-s3
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -26,10 +27,13 @@ object storage systems.
 %prep
 %setup -q
 %{__sed} -i -e '1 s,#!.*ruby,#!%{__ruby},' bin/*
+%patch0 -p1
 
 %build
 # write .gemspec
 %__gem_helper spec
+# make aws/s3 optional
+%{__sed} -i -e '/aws-s3/d' *.gemspec
 
 %install
 rm -rf $RPM_BUILD_ROOT
