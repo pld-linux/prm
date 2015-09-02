@@ -1,3 +1,5 @@
+# NOTE:
+#  - file /usr/bin/prm from install of prm-0.2.13-1.noarch conflicts with file from package synce-core-0.17-2.x86_64
 Summary:	Package Repository Manager
 Name:		prm
 Version:	0.2.13
