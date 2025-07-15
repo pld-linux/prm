@@ -30,8 +30,8 @@ object storage systems.
 %prep
 %setup -q
 %{__sed} -i -e '1 s,#!.*ruby,#!%{__ruby},' bin/*
-%patch0 -p1
-%patch1 -p1
+%patch -P0 -p1
+%patch -P1 -p1
 
 # remove +x to avoid generating bogus deps
 find lib -type f | xargs chmod a-x
